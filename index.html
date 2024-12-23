@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <h3>Fingerprint</h3>
         <p id="fp"></p>
+        
+        <h3>Details</h3>
+        <p id="result", white-space: break-spaces></p>
         <script>
             // Initialize the agent at application startup.
             const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
@@ -14,8 +18,9 @@
                     // This is the visitor identifier:
                     const visitorId = result.visitorId;
                     document.getElementById('fp').innerText = visitorId;
+                    document.getElementById('result').innerText = JSON.stringify(result, null, 2).split(' ').join('ㅤ');
                     console.log(visitorId);
-                    consolg.log(result);
+                    console.log(JSON.stringify(result, null, 2))
                 })
                 .catch(error => console.error(error));
         </script>
